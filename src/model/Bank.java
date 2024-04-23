@@ -1,5 +1,10 @@
 package model;
 
+import exceptions.NoCredit;
+import exceptions.NoExistGetAccount;
+import exceptions.NoExistSendAccount;
+import exceptions.SuccesfulTransaction;
+
 public class Bank {
     private Account account1;
     private Account account2;
@@ -9,22 +14,21 @@ public class Bank {
         this.account2 = account2;
     }
 
-    public String makeTransferBetweenAccounts(Long numberAccount1 , Long numberAccount2 , double value ){
-        String message = "";
-        if (numberAccount1== account1.getNumberAccount()){
-            if(numberAccount2 == account2.getNumberAccount()){
+    public void makeTransferBetweenAccounts(Long numberAccount1 , Long numberAccount2 , double value) throws SuccesfulTransaction, NoCredit, NoExistGetAccount,NoExistSendAccount{
+        if (numberAccount1 == account1.getNumberAccount() || account1 == null){
+            if(numberAccount2 == account2.getNumberAccount() || account2 == null){
                 if(account1.getAccountBalance()>= value){
                     account1.setAccountBalance(account1.getAccountBalance() - value);
                     account2.setAccountBalance(account2.getAccountBalance() + value);
-                    return message = "La transacción se realizó de manera exitosa";
+                    throw new SuccesfulTransaction();
                 }else {
-                    return message= "NO se tiene el saldo suficiente en la cuenta";
+                    throw new NoCredit();
                 }
             }else {
-                return message = "No existe una cuenta que reciba el dinero con ese número";
+                throw new NoExistGetAccount();
             }
         }else {
-            return message = "No existe una cuenta que envíe el dinero con ese número";
+            throw new NoExistSendAccount();
         }
     }
 
