@@ -36,4 +36,12 @@ public class Account {
     }
 
 
+    @Override
+    public String toString() {
+        return "Account{" +
+                "accountBalance=" + accountBalance +
+                ", nameOfOwner='" + nameOfOwner + '\'' +
+                ", numberAccount=" + numberAccount +
+                '}';
+    }
 }
