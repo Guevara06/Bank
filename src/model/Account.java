@@ -1,39 +1,39 @@
 package model;
 
 public class Account {
-    private Double accountBalance;
+    private double accountBalance;
     private String nameOfOwner;
-    private Long numberAccount;
+    private long numberAccount;
 
-    public Account(Double accountBalance, String nameOfOwner) {
+    public Account(double accountBalance, String nameOfOwner, long numberAccount) {
         this.accountBalance = accountBalance;
         this.nameOfOwner = nameOfOwner;
         this.numberAccount = numberAccount;
     }
 
-    public Double getAccountBalance() {
+    public double getAccountBalance() {
         return accountBalance;
     }
 
-    @Override
-    public String toString() {
-        return "Account{" +
-                "accountBalance=" + accountBalance +
-                ", nameOfOwner='" + nameOfOwner + '\'' +
-                ", numberAccount=" + numberAccount +
-                '}';
+    public void setAccountBalance(double accountBalance) {
+        this.accountBalance = accountBalance;
     }
 
-    public void setRevenue(Double Revenue){
-        accountBalance  = accountBalance + Revenue;
-
-    };
-    public void setRefunds(double Refunds){
-        if (accountBalance >= Refunds){
-            accountBalance = accountBalance - Refunds;
-        }else {
-            System.out.println("insufficient funds");
-        }
+    public String getNameOfOwner() {
+        return nameOfOwner;
     }
+
+    public void setNameOfOwner(String nameOfOwner) {
+        this.nameOfOwner = nameOfOwner;
+    }
+
+    public long getNumberAccount() {
+        return numberAccount;
+    }
+
+    public void setNumberAccount(long numberAccount) {
+        this.numberAccount = numberAccount;
+    }
+
 
 }
