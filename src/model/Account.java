@@ -1,14 +1,17 @@
 package model;
 
+import java.util.Random;
+
 public class Account {
     private double accountBalance;
     private String nameOfOwner;
     private long numberAccount;
 
-    public Account(double accountBalance, String nameOfOwner, long numberAccount) {
+    public Account(double accountBalance, String nameOfOwner) {
+        Random randomNumbers = new Random();
         this.accountBalance = accountBalance;
         this.nameOfOwner = nameOfOwner;
-        this.numberAccount = numberAccount;
+        this.numberAccount = Math.abs(randomNumbers.nextLong());
     }
 
     public double getAccountBalance() {
