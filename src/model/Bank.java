@@ -1,9 +1,6 @@
 package model;
 
-import exceptions.NoCredit;
-import exceptions.NoExistGetAccount;
-import exceptions.NoExistSendAccount;
-import exceptions.SuccesfulTransaction;
+import exceptions.*;
 
 public class Bank {
     private Account account1;
@@ -14,16 +11,22 @@ public class Bank {
         this.account2 = account2;
     }
 
-    public void makeTransferBetweenAccounts(Long numberAccount1 , Long numberAccount2 , double value) throws SuccesfulTransaction, NoCredit, NoExistGetAccount,NoExistSendAccount{
+    public String makeTransferBetweenAccounts(Long numberAccount1 , Long numberAccount2 , double value) throws NoCredit, NoExistGetAccount,NoExistSendAccount,EqualAccount{
+        String message="";
         if (numberAccount1 == account1.getNumberAccount() || account1 == null){
             if(numberAccount2 == account2.getNumberAccount() || account2 == null){
-                if(account1.getAccountBalance()>= value){
-                    account1.setAccountBalance(account1.getAccountBalance() - value);
-                    account2.setAccountBalance(account2.getAccountBalance() + value);
-                    throw new SuccesfulTransaction();
+                if(numberAccount1 != numberAccount2){
+                    if(account1.getAccountBalance()>= value){
+                        account1.setAccountBalance(account1.getAccountBalance() - value);
+                        account2.setAccountBalance(account2.getAccountBalance() + value);
+                        return message= "La transacción se realizó de manera exitosa";
+                    }else {
+                        throw new NoCredit();
+                    }
                 }else {
-                    throw new NoCredit();
+                    throw new EqualAccount();
                 }
+
             }else {
                 throw new NoExistGetAccount();
             }
@@ -33,10 +36,10 @@ public class Bank {
     }
 
     public String printNumberAccounts(){
-        String message = "";
-        return message = "NÚMERO DE LAS CUENTAS ALMACENADAS" + "\n"
+        return "NÚMERO DE LAS CUENTAS ALMACENADAS" + "\n"
                 + account1.getNumberAccount() + "\n"
                 + account2.getNumberAccount();
+
     }
 
 }
