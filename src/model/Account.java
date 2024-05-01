@@ -22,20 +22,12 @@ public class Account {
         this.accountBalance = accountBalance;
     }
 
-    public String getNameOfOwner() {
-        return nameOfOwner;
-    }
-
     public void setNameOfOwner(String nameOfOwner) {
         this.nameOfOwner = nameOfOwner;
     }
 
     public long getNumberAccount() {
         return numberAccount;
-    }
-
-    public void setNumberAccount(long numberAccount) {
-        this.numberAccount = numberAccount;
     }
 
 

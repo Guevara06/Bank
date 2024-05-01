@@ -12,7 +12,6 @@ public class Bank {
     }
 
     public String makeTransferBetweenAccounts(Long numberAccount1 , Long numberAccount2 , double value) throws NoCredit, EqualAccount, NoExistAccount {
-        String message="";
         if (numberAccount1 != null && numberAccount2 != null) {
             if(!numberAccount1.equals(numberAccount2)) {
                 if (numberAccount1 == account1.getNumberAccount()){
@@ -20,7 +19,7 @@ public class Bank {
                         if(account1.getAccountBalance()>= value){
                             account1.setAccountBalance(account1.getAccountBalance() - value);
                             account2.setAccountBalance(account2.getAccountBalance() + value);
-                            return message= "La transacción se realizó de manera exitosa";
+                            return "La transacción se realizó de manera exitosa";
                         }else {
                             throw new NoCredit();
                         }
